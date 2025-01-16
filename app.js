@@ -28,7 +28,6 @@ const verifyToken = require(verifyToken); //accedo midllewares
 const middlewares = require("./middlewares/authMieddleware"); //accedo midllewares
 app.use(middlewares);
 
-const users=require("./data/users");
 const routes=require("./routes/users");
 const crypto=require("./crypto/config");
 
