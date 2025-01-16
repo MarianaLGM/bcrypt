@@ -25,11 +25,16 @@ const generateToken = require(generateToken); //accedo midllewares
 const verifyToken = require(verifyToken); //accedo midllewares
 //const crypto= require("./crypto/config") //accedo a la carpeta confi crypto*/
 
-const middlewares = require("middlewares/authMieddleware"); //accedo midllewares
+const middlewares = require("./middlewares/authMieddleware"); //accedo midllewares
+app.use(middlewares);
 
-middlewares.generateToken()
-middlewares.verifyToken()
+const users=require("./data/users");
+const routes=require("./routes/users");
+const crypto=require("./crypto/config");
+
 routes.rutas(app);
+
+
 
 app.listen(PORT, () => {
     console.log(`Servidor en http://localhost:${PORT}`);
