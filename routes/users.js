@@ -1,12 +1,15 @@
 
 //users.js // Aquí estarán todas las rutas
+const express=require("express")
+const router=express.Router()
+const users= require("./users") 
+const {generateToken, verifyToken}= require("./authMiddleware") //DESESTRUCTURING de las dos funciones middleware
+app.use(generateToken,verifyToken);
 
-const users= require("./data/users") 
 
 //Página de Inicio, vamos a montar el login
 // GET /: Página de inicio con formulario de inicio de sesión y enlace al panel de control
-const rutas = (app) => {
-    app.get('/', (req, res) => {
+    router.get('/', (req, res) => {
     const loginForm = `
         <form action="/login" method="post">
         <label for="username">Usuario:</label>
@@ -59,8 +62,6 @@ const rutas = (app) => {
         req.session.destroy();
         res.redirect('/');
         });
-}
+3
 
-module.exports = {
-    rutas,
-};
+module.exports=router;

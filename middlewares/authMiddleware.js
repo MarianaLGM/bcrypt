@@ -2,11 +2,6 @@
 
 const jwt = require('jsonwebtoken');
 
-
-//- Middleware para manejar datos de formulario y JSON    
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
 //-MIDDLEWARE GENERACIÓN Función para generar un token JWT utilizando la información del usuario.
 function generateToken(user) {
     return jwt.sign({ user: user.id }, 'tu_secreto_secreto', { expiresIn: '1h' });
