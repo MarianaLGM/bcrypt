@@ -21,16 +21,23 @@ app.use(
     );
 
 //REQUERIR Y ACCEDER RUTAS
-const users = require("../routes/users");
-app.use('/', users);
+const users = require("./routes/users");
+app.use("/", users);
 
 //REQUERIR Y ACCEDER MIDDLEWARE
-const {generateToken, verifyToken}= require("../middlewares/authMiddleware") //DESESTRUCTURING de las dos funciones middleware
+const {generateToken, verifyToken}= require("./middlewares/authMiddleware") //DESESTRUCTURING de las dos funciones middleware
 app.use(generateToken,verifyToken);
 
 //REQUERIR Y ACCEDER URLENCODED Y JSON:  Middleware para manejar datos de formulario y JSON
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json());
+
+//REQUERIR Y ACCEDER CRYPTO
+const crypto = require("crypto");
+
+
+//REQUERIR Y ACCEDER ARRAY USUARIOS
+//const users= require("./data/users")
 
 
 app.listen(PORT, () => {
