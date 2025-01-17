@@ -2,8 +2,13 @@
 //users.js // Aquí estarán todas las rutas
 const express=require("express")
 const router=express.Router()
-const users= require("../data/users")
-const {generateToken, verifyToken}= require("../middlewares/authMiddleware") //DESESTRUCTURING de las dos funciones middleware
+const verifyToken= require("../middlewares/authMiddleware") //DESESTRUCTURING de las dos funciones middleware
+
+const users = [
+    { id: 1, username: "Olivia", password: "Olivia1", name: "Olivia Uno" },
+    { id: 2, username: "Mateo", password: "Mateo2", name: "Mateo Dos" },
+    ];
+
 
 
 //Página de Inicio, vamos a montar el login
@@ -34,10 +39,9 @@ const {generateToken, verifyToken}= require("../middlewares/authMiddleware") //D
 
 //////////////////NO FUNCIONA///////////////////////////////////
     router.post("/login", (req, res) => {
-        const {username, password} = req.body;//ERROR desctructurig
-        console.log({username, password})
+        const {username, password} = users;//ERROR desctructurig
         const user = users.find( //si ese user está que me busque contraseña
-        (u) => u.username === username && u.password === password
+        (user) => user.username === username && user.password === password
         );
     
         if (user) { //ERROR

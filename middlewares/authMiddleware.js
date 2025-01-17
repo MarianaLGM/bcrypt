@@ -18,9 +18,7 @@ function verifyToken(req, res, next) {
     }   
     jwt.verify(token, "tu_secreto_secreto", (err, decoded) => {//decoded es el resultado que nos está dando ese usuario con el token
     if (err) {
-    return res
-    .status(401)
-    .json({ message: "Token inválido", error: err.message });
+    return res.status(401).json({ message: "Token inválido", error: err.message });
     } 
         req.user = decoded.user;
         next();
@@ -28,8 +26,6 @@ function verifyToken(req, res, next) {
     }
 
 
-module.exports = {
-    generateToken,
-    verifyToken,
-};
+module.exports =verifyToken;
+
     
