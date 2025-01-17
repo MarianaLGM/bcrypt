@@ -34,7 +34,8 @@ const {generateToken, verifyToken}= require("../middlewares/authMiddleware") //D
 
 //////////////////NO FUNCIONA///////////////////////////////////
     router.post("/login", (req, res) => {
-        const { username, password } = req.body;//ERROR desctructurig
+        const {username, password} = req.body;//ERROR desctructurig
+        console.log({username, password})
         const user = users.find( //si ese user está que me busque contraseña
         (u) => u.username === username && u.password === password
         );
