@@ -3,13 +3,7 @@
 const express=require("express")
 const router=express.Router()
 const verifyToken= require("../middlewares/authMiddleware") //DESESTRUCTURING de las dos funciones middleware
-
-const users = [
-    { id: 1, username: "Olivia", password: "Olivia1", name: "Olivia Uno" },
-    { id: 2, username: "Mateo", password: "Mateo2", name: "Mateo Dos" },
-    ];
-
-
+const users=require("../data/users")
 
 //Página de Inicio, vamos a montar el login
 // GET /: Página de inicio con formulario de inicio de sesión y enlace al panel de control
