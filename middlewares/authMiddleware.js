@@ -2,6 +2,8 @@
 
 const jwt = require("jsonwebtoken");
 
+const users=require("../data/users")
+
 //-MIDDLEWARE GENERACIÓN Función para generar un token JWT utilizando la información del usuario.
 
 function generateToken(user) {
@@ -26,6 +28,8 @@ function verifyToken(req, res, next) {
     }
 
 
-module.exports =verifyToken;
-
+module.exports = {
+    generateToken,
+    verifyToken,
+};
     

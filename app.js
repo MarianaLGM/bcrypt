@@ -29,14 +29,8 @@ app.use(
 const routes = require("./routes/users");
 app.use("/", routes);
 
-//REQUERIR Y ACCEDER MIDDLEWARE
-const verifyToken= require("./middlewares/authMiddleware") //DESESTRUCTURING de las dos funciones middleware
-app.use(verifyToken);
-
-
 //REQUERIR Y ACCEDER CRYPTO
 const crypto = require("crypto");
-
 
 //REQUERIR Y ACCEDER ARRAY USUARIOS
 const array= require("./data/users")

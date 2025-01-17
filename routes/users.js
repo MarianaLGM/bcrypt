@@ -2,7 +2,7 @@
 //users.js // Aquí estarán todas las rutas
 const express=require("express")
 const router=express.Router()
-const verifyToken= require("../middlewares/authMiddleware") //DESESTRUCTURING de las dos funciones middleware
+const {generateToken, verifyToken}= require("../middlewares/authMiddleware")  //DESESTRUCTURING de las dos funciones middleware
 const users=require("../data/users")
 
 //Página de Inicio, vamos a montar el login
@@ -19,8 +19,6 @@ const users=require("../data/users")
         <button type="submit">Iniciar sesión</button>
         </form>
 
-        <button type="submit">Logout</button>
-        </form>
         <a href="/dashboard">dashboard</a>
         `;
 
@@ -33,7 +31,7 @@ const users=require("../data/users")
 
 //////////////////NO FUNCIONA///////////////////////////////////
     router.post("/login", (req, res) => {
-        const {username, password} = users;//ERROR desctructurig
+        const {username, password} = req.body;//ERROR desctructurig
         const user = users.find( //si ese user está que me busque contraseña
         (user) => user.username === username && user.password === password
         );
@@ -52,7 +50,7 @@ const users=require("../data/users")
 //////////////////NO FUNCIONA///////////////////////////////////
     router.get("/dashboard", verifyToken, (req, res) => {
         const userId = req.user;
-        const user = users.find((u) => u.id === userId);
+        const user = users.find((user) => user.id === userId);
         
         if (user) {
         res.send(`<h1>Bienvenido, ${user.name}!</h1> <p>ID: ${user.id}</p> <p>Usuario: ${user.username}</p> <br> <form action="/logout" method="post"> <button type="submit">Cerrar sesión</button> </form> <a href="/">home</a> `);
