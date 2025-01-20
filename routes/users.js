@@ -4,6 +4,8 @@ const express=require("express")
 const router=express.Router()
 const {generateToken, verifyToken}= require("../middlewares/authMiddleware")  //DESESTRUCTURING de las dos funciones middleware
 const users=require("../data/users")
+const crypto = require("crypto");
+const bcrypt = require("bcrypt")
 
 //Página de Inicio, vamos a montar el login
 // GET /: Página de inicio con formulario de inicio de sesión y enlace al panel de control
@@ -32,6 +34,10 @@ const users=require("../data/users")
 //////////////////NO FUNCIONA///////////////////////////////////
     router.post("/login", (req, res) => {
         const {username, password} = req.body;//ERROR desctructurig
+
+        /*DUDA SI VA AQUÍ*/const secret = crypto.randomBytes(64).toString("hex");
+        /*DUDA SI VA AQUÍ*/const hashedSecret = bcrypt.hashSync(secret, 10);
+        
         const user = users.find( //si ese user está que me busque contraseña
         (user) => user.username === username && user.password === password
         );
