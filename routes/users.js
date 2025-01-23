@@ -31,12 +31,11 @@ const bcrypt = require("bcrypt")
 //POST /login: Endpoint para autenticar y generar un token JWT.
 
 
-//////////////////NO FUNCIONA///////////////////////////////////
     router.post("/login", (req, res) => {
         const {username, password} = req.body;//ERROR desctructurig
 
-        /*DUDA SI VA AQUÍ*/const secret = crypto.randomBytes(64).toString("hex");
-        /*DUDA SI VA AQUÍ*/const hashedSecret = bcrypt.hashSync(secret, 10);
+        /*DUDA SI VA AQUÍconst secret = crypto.randomBytes(64).toString("hex");*/
+        /*DUDA SI VA AQUÍconst hashedSecret = bcrypt.hashSync(secret, 10);*/
         
         const user = users.find( //si ese user está que me busque contraseña
         (user) => user.username === username && user.password === password
@@ -53,7 +52,7 @@ const bcrypt = require("bcrypt")
   
 //Ruta protegida que solo se puede acceder con un token válido. Muestra el panel de control con información del usuario.  
 //GET /dashboard: Panel de control accesible solo con un token JWT válido.
-//////////////////NO FUNCIONA///////////////////////////////////
+
     router.get("/dashboard", verifyToken, (req, res) => {
         const userId = req.user;
         const user = users.find((user) => user.id === userId);
@@ -68,7 +67,7 @@ const bcrypt = require("bcrypt")
 //Cierre de Sesión. Ruta que destruye la sesión y redirige al usuario a la página de inicio.
 //POST /logout: Endpoint para cerrar sesión y destruir la sesión.
     router.post("/logout", (req, res) => {
-        req.session.destroy();
+        req.session.destroy();c
         res.redirect("/");
         });
 
